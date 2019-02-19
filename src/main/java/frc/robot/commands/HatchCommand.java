@@ -7,56 +7,36 @@
 
 package frc.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
 
-public class LimitCommand extends Command {
-  public LimitCommand() {
+public class HatchCommand extends Command {
+  public HatchCommand() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);\
-    requires(Robot.suckBall);
+     requires(Robot.HatchMove);
   }
-  
+
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    //Robot.suckBall.ballIntakeController.set(ControlMode.PercentOutput, 0);
-    Robot.suckBall.ballIntakeController.configFactoryDefault();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //Robot.m_oi.limitSwitchButton.whileHeld(new LimitCommand());
-   // double move =1;
-   // double turn =1;
+    Boolean HatchButtonUp = Robot.m_oi.stick2.getRawButton(3);
+    Boolean HatchButtonDown = Robot.m_oi.stick2.getRawButton(4);
+    //Move Up *****************************
 
-    
-   // Robot.driveTrain.limitHit();
-   double move = Robot.m_oi.stick1.getY();
-   //LimitSwitch = new DigitalInput(RobotMap.limitSwitchChannel);
-   //Robot.suckBall.test();
-   //boolean in = Robot.m_oi.stick1.getRawButtonPressed(1);
-   // boolean out = Robot.m_oi.stick1.getRawButtonPressed(2);
-   // double output =0;
-   // System.out.println(in);
-   // System.out.println(out);
-   Robot.suckBall.ball(move);
-   /*
-    if (in) {
-      System.out.println(in);
-      Robot.suckBall.ball(output);
-      
-    } 
-    else if (out) {
-      Robot.suckBall.ball(-output);
-      
+    if (HatchButtonUp == true){
+      Robot.HatchMove.hatchUp(0.5);
+    }else if (HatchButtonDown){
+      Robot.HatchMove.hatchUp(-0.5);
+    } else{
+      Robot.HatchMove.hatchUp(0);
     }
-*/
+
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -74,6 +54,5 @@ public class LimitCommand extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }

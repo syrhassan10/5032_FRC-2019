@@ -9,9 +9,9 @@ package frc.robot;
 
 import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
-
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.vision.VisionThread;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -21,7 +21,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.moveFWD;
 
 import frc.robot.subsystems.BallIntake;
+import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.HatchRotate;
 
 //import frc.robot.subsystems.GripPipeline;
 
@@ -36,8 +39,13 @@ import frc.robot.subsystems.DriveTrain;
 
 
 public class Robot extends TimedRobot {
-  public static DriveTrain moveForward = new DriveTrain();
-  public static BallIntake suckBall = new BallIntake();
+  public static DriveTrain moveForward  = new DriveTrain();;
+  public static BallIntake suckBall= new BallIntake();;
+  public static Elevator elevator = new Elevator();
+  public static HatchRotate HatchMove= new HatchRotate();
+  public static Claw claw = new Claw();
+
+
 
  // public static LimitSwitch spitter = new LimitSwitch();
   public static OI m_oi;
@@ -45,7 +53,8 @@ public class Robot extends TimedRobot {
   UsbCamera source;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
   private VisionThread visionThread;
-	private double centerX = 0.0;
+  private double centerX = 0.0;
+  public NetworkTable table;
 	
 	private final Object imgLock = new Object();
   /**
@@ -54,8 +63,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    //table = NetworkTable.getTable("GRIP/myLinesReport");
+
+    
     m_oi = new OI();
-  
+    
    // SmartDashboard.putBoolean("isPressed", Robot.driveTrain.isSwitchPressed());
     /*
     source = CameraServer.getInstance().startAutomaticCapture();
@@ -137,6 +149,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
+    
     /*
     double centerX;
     synchronized (imgLock) {
@@ -172,6 +185,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     //SmartDashboard.putBoolean("isPressed", Robot.driveTrain.isSwitchPressed());
+
     Scheduler.getInstance().run();
   }
 

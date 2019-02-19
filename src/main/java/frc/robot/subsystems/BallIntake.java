@@ -9,58 +9,78 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
+import edu.wpi.first.wpilibj.Counter.Mode;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.LimitCommand;
+
+import frc.robot.commands.intakeIN;
+
 
 
 public class BallIntake extends Subsystem {
 
   public DigitalInput LimitSwitch = new DigitalInput(RobotMap.limitSwitchChannel);
-  public TalonSRX ballIntakeController = new TalonSRX(0); 
-    public BallIntake () {
 
+  
+  public WPI_VictorSPX ballIntakeController = new WPI_VictorSPX(RobotMap.ballIntakeChannel);
 
-    }
-/*
-    public void test(){
-      ballIntakeController.set(1);
-
-    }
-    */
-  public void ball(double output){
+  
    
-     
-     ballIntakeController.set(ControlMode.PercentOutput,output); 
-      if (LimitSwitch.get()) { // if not pressed
-        System.out.println("true");
-        ballIntakeController.set(ControlMode.PercentOutput,output);
-        System.out.println(output);
-      // 
+    
+  public void intakeON(double output){
+    ballIntakeController.set(output);
+
+  }
+   
+    //ballIntakeController.set(output);
+     //ballIntakeController.set(0); 
+     /*
+      if (LimitSwitch.get()) { 
+        // if not pressed
+        ballIntakeController.set(output);
       }
       else {
-        System.out.println("false"); // if pressed
-        ballIntakeController.set(ControlMode.PercentOutput, 0.2); 
-        
+        // if pressed
+        ballIntakeController.set(0.2); 
         try {
         Thread.sleep(50);
       } catch (InterruptedException e) {
         
         e.printStackTrace();
       }
-      ballIntakeController.set(ControlMode.PercentOutput,0);
+      ballIntakeController.set(0);
     }
-   System.out.println(output);
-   // spitter.set(output);
-    
-  }
 
+
+    ballIntakeController.set(output);
+  }
+  */
+
+ public void intakeOut(double output){
+
+  ballIntakeController.set(output);
+
+ }
+
+
+
+
+ /*
+ public void disableMotors()
+ {
+  ballIntakeController.set(output);
+
+ }
+*/
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-     setDefaultCommand(new LimitCommand());
+    
+
+     setDefaultCommand(new intakeIN());
   }
 }

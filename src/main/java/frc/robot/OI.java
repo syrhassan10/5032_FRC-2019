@@ -10,6 +10,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -23,9 +25,28 @@ public class OI {
   // number it is.
   public Joystick stick1 = new Joystick(RobotMap.stick1Channel);
   public Joystick stick2 = new Joystick (RobotMap.stick2Channel);
-  public JoystickButton  limitSwitchButton = new JoystickButton(stick1, 1);
+  //public JoystickButton  intakeInButton = new JoystickButton(stick1, 1);
+  //public JoystickButton  intakeOutButton = new JoystickButton(stick1, 2);
+  
   //double z = stick1.getRawAxis(0);
  // limitSwitchButton.whileHeld(new LimitCommand());
+ public OI (){
+
+  /*
+  intakeInButton.whileHeld(new intakeIN());
+  intakeOutButton.whileHeld(new intakeOUT());
+*/
+
+
+
+
+  //Dashboard stuff -----------------------------------------------------
+  SmartDashboard.putData("Drive Train", new moveFWD());
+  SmartDashboard.putData("intake IN", new intakeIN());
+
+  //SmartDashboard.putData("Hatch Pneumatics", new pneu());
+ 
+ }
 
 
   

@@ -18,15 +18,38 @@ public class RobotMap {
   // following variables to use with your drivetrain subsystem.
   // public static int leftMotor = 1;
   // public static int rightMotor = 2;
+
+  // Gamepads ---------------------------------
 	public static int stick1Channel = 0;
   public static int stick2Channel = 1;
-  
+  //Sensors ---------------------------------------
   public static int limitSwitchChannel = 4;
-	public static int FrontLeftChannel = 0;
-	public static int RearLeftChannel = 1;
-	public static int FrontRightChannel = 3;
-  public static int RearRightChannel = 2;
-  public static int ballIntakeChannel = 5;
+
+  //Talon SRX CAN bus IDs-------------------------------------
+  //Left
+  int frontLeftChannel = 1;
+  int rearLeftChannel = 4;
+  //Right
+  int frontRightChannel = 2;
+  int rearRightChannel = 3;
+  
+  
+  //Victor SPX CAN bus IDs-------------------------------
+  //Elevators
+  int elevator1Channel = 1;
+  int elevator2Channel = 2;
+  int elevator3Channel = 3;
+  int elevator4Channel = 4;
+
+
+  
+
+  //Intake
+  public static int ballIntakeChannel = 6;
+
+  //
+  
+
   // If you are using multiple modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:
   // public static int rangefinderPort = 1;
