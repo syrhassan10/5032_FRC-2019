@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 import frc.robot.commands.HatchCommand;
 
 /**
@@ -18,11 +19,11 @@ import frc.robot.commands.HatchCommand;
 public class HatchRotate extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-	public WPI_VictorSPX hatchMotor = new WPI_VictorSPX(7);
+	public WPI_VictorSPX hatchMotor = new WPI_VictorSPX(RobotMap.hatchRotateChannel);
 
 
 public void hatchUp(double output){
-hatchMotor.set(output);
+hatchMotor.set(0.5*output);
 
 
 }

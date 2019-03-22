@@ -26,29 +26,9 @@ public class intakeIN extends Command {
   @Override
   protected void execute() {
 
-    boolean buttonIn = Robot.m_oi.stick2.getRawButton(1);
-    boolean buttonOut = Robot.m_oi.stick2.getRawButton(2);
-    //double move = Robot.m_oi.stick1.getY();
-    //Robot.suckBall.intakeON(move);
-    //Robot.suckBall.test();
-    /*
-    if (buttonIn == true){
-        
-      
-        Robot.suckBall.intakeON(1);
-    }else{
-        Robot.suckBall.intakeON(0);
-      }
-    
-    if (buttonOut == true)  {
-      //Opens the Clamp when button 6 is pressed and prints
-      Robot.suckBall.intakeOut(-1);
-    }else{
-      Robot.suckBall.intakeOut(0);
-
-    }
-*/
-   
+    boolean buttonIn = Robot.m_oi.stick2.getRawButton(2);
+    boolean buttonOut = Robot.m_oi.stick2.getRawButton(1);
+// SECOND JOYSTICK: BUTTONS
 
       if (buttonIn == true){
         Robot.suckBall.intakeON(1);
@@ -59,30 +39,6 @@ public class intakeIN extends Command {
       }
      
     }
-    
-  
-    /*
-    if (buttonIn){
-      Robot.suckBall.intakeON(-1);
-      
-    }
-    else if(buttonIn == false){
-      Robot.suckBall.intakeON(0);
-
-    }
-    
-    if (buttonOut)
-    {
-      Robot.suckBall.intakeOut(1);
-      
-    }
-    else if (buttonOut==false){
-      Robot.suckBall.intakeOut(0);
-
-    }
-    */
-    
-  
 
   // Make this return true when this Command no longer needs to run execute()
   @Override

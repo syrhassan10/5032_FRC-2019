@@ -26,16 +26,44 @@ public class BallIntake extends Subsystem {
   public DigitalInput LimitSwitch = new DigitalInput(RobotMap.limitSwitchChannel);
 
   
-  public WPI_VictorSPX ballIntakeController = new WPI_VictorSPX(RobotMap.ballIntakeChannel);
+  public WPI_VictorSPX ballIntakeController = new WPI_VictorSPX(RobotMap.ballIntakeChannel); // Victor ID:4
 
   
-   
-    
   public void intakeON(double output){
     ballIntakeController.set(output);
 
   }
-   
+   /* 
+  public void intakeON(double output){
+    //ballIntakeController.set(output); WITHOUT LIMIT SWITCH
+
+//************** WITH LIMIT SWITCH***********************************
+    if (LimitSwitch.get()) { 
+      // if not pressed
+      ballIntakeController.set(output);
+    }
+    else {
+      // if pressed
+      ballIntakeController.set(0.2); 
+      try {
+      Thread.sleep(50);
+    } catch (InterruptedException e) {
+      
+      e.printStackTrace();
+    }
+    //ballIntakeController.set(0);
+  }
+*/
+
+
+
+ /*
+ public void disableMotors()
+ {
+  ballIntakeController.set(output);
+
+ }
+*/
     //ballIntakeController.set(output);
      //ballIntakeController.set(0); 
      /*
@@ -52,30 +80,13 @@ public class BallIntake extends Subsystem {
         
         e.printStackTrace();
       }
-      ballIntakeController.set(0);
+      //ballIntakeController.set(0);
     }
 
 
     ballIntakeController.set(output);
   }
   */
-
- public void intakeOut(double output){
-
-  ballIntakeController.set(output);
-
- }
-
-
-
-
- /*
- public void disableMotors()
- {
-  ballIntakeController.set(output);
-
- }
-*/
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

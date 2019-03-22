@@ -23,19 +23,27 @@ import frc.robot.commands.elevatorMove;
 public class Elevator extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-	public WPI_VictorSPX elevator1 = new WPI_VictorSPX(1);
-  public WPI_VictorSPX elevator2 = new WPI_VictorSPX(2);
-  public WPI_VictorSPX elevator3 = new WPI_VictorSPX(3);
-  public WPI_VictorSPX elevator4 = new WPI_VictorSPX(4);
+	public WPI_VictorSPX elevator1 = new WPI_VictorSPX(RobotMap.elevator1Channel);
+  public WPI_VictorSPX elevator2 = new WPI_VictorSPX(RobotMap.elevator2Channel);
+  public WPI_VictorSPX elevator3 = new WPI_VictorSPX(RobotMap.elevator3Channel);
+  public WPI_VictorSPX elevator4 = new WPI_VictorSPX(RobotMap.elevator4Channel);
   
   public void moveElevator(double move){
+    if (move<0){
 
-    elevator1.set(ControlMode.PercentOutput, move);
-    elevator2.set(ControlMode.PercentOutput, move);
-    elevator3.set(ControlMode.PercentOutput, move);
-    elevator4.set(ControlMode.PercentOutput, move);
+    elevator1.set(ControlMode.PercentOutput, -move*0.7);
+    elevator2.set(ControlMode.PercentOutput, -move*0.7);
+    elevator3.set(ControlMode.PercentOutput, -move*0.7);
+    elevator4.set(ControlMode.PercentOutput, -move*0.7);
 
+    }
+    if (move>0){
 
+      elevator1.set(ControlMode.PercentOutput, -move*0.15);
+      elevator2.set(ControlMode.PercentOutput, -move*0.15);
+      elevator3.set(ControlMode.PercentOutput, -move*0.15);
+      elevator4.set(ControlMode.PercentOutput, -move*0.15);
+    }
   }
   @Override
   public void initDefaultCommand() {

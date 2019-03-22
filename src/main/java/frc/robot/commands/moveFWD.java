@@ -33,9 +33,9 @@ public class moveFWD extends Command {
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() {
+public void execute() {
     
-    Robot.moveForward.teleopDrive(Robot.m_oi.stick1.getX(), -Robot.m_oi.stick1.getY());
+    Robot.moveForward.teleopDrive(Robot.m_oi.stick1.getX(), Robot.m_oi.stick1.getY());// FIRST JOYSTICK: LEFT STICK
 
   }
 

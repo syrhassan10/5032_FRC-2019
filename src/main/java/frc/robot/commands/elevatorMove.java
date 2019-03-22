@@ -15,19 +15,25 @@ public class elevatorMove extends Command {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.elevator);
+    
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {  
-    //double move = Robot.m_oi.stick1.getY();
-
-    //Robot.elevator.moveElevator(move*0.5);
+    //boolean axis = Robot.m_oi.stick1.getRawButton(4);
+    double move = Robot.m_oi.stick1.getRawAxis(5); // FIRST JOYSTICK: RIGHT STICK
+  
+    Robot.elevator.moveElevator(move);
+    System.out.println(move);
+    
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()

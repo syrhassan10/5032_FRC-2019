@@ -23,13 +23,13 @@ public class ClawMech extends Command {
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() {
+public void execute() {
     boolean ClawButton;
     boolean ClawButtonRelease;
 
     //Buttons for Claw Grab and release
-    ClawButton = Robot.m_oi.stick2.getRawButton(6);
-    ClawButtonRelease = Robot.m_oi.stick2.getRawButton(5);
+    ClawButton = Robot.m_oi.stick2.getRawButton(4);
+    ClawButtonRelease = Robot.m_oi.stick2.getRawButton(3);
     
     if (ClawButton == true){
       if(true) {

@@ -26,10 +26,10 @@ import frc.robot.commands.moveFWD;
 public class DriveTrain extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public WPI_TalonSRX frontLeft = new WPI_TalonSRX(1);
-  public WPI_TalonSRX rearLeft= new WPI_TalonSRX(4);
-  public WPI_TalonSRX frontRight = new WPI_TalonSRX(2);
-  public WPI_TalonSRX rearRight = new WPI_TalonSRX(3);
+  public WPI_TalonSRX frontLeft = new WPI_TalonSRX(RobotMap.frontLeftChannel);
+  public WPI_TalonSRX rearLeft= new WPI_TalonSRX(RobotMap.rearLeftChannel); 
+  public WPI_TalonSRX frontRight = new WPI_TalonSRX(RobotMap.frontRightChannel);
+  public WPI_TalonSRX rearRight = new WPI_TalonSRX(RobotMap.rearRightChannel); // CHANGE BACK TO ID: 3.
   SpeedControllerGroup leftMotorGroup = new SpeedControllerGroup(frontLeft, rearLeft);
   SpeedControllerGroup rightMotorGroup = new SpeedControllerGroup(frontRight, rearRight);
   public DifferentialDrive drive = new DifferentialDrive(rightMotorGroup, leftMotorGroup);
@@ -60,12 +60,7 @@ public class DriveTrain extends Subsystem {
     ConfigTalons(rearLeft);
     ConfigTalons(frontRight);
     ConfigTalons(rearRight);
-// grouping motors
 
-
-
-// differential drive
-    
   
     
   }
@@ -86,42 +81,11 @@ public class DriveTrain extends Subsystem {
 
   }
 
-public void test(double output) {
 
-frontRight.set(output);  
-rearRight.set(output);
-
-frontLeft.set(output);  
-rearLeft.set(output);
-
-}
  public void teleopDrive(double move, double turn){
-  frontLeft.setInverted(true);
-  rearLeft.setInverted(true);
-   /*
-  leftSlave.follow(leftMaster);
-  rightSlave.follow(rightMaster);
-  */
-  /*
-  if (Math.abs(move) < 0.10) {
-
-    move = 0;
-  }
-  if (Math.abs(turn) < 0.10) {
-
-    turn = 0;
-  }
-  if (Math.abs(turn) > 0.5) {
-
-    turn = 0.5;
-  }
-  if (Math.abs(move) > 0.5) {
-
-    move = 0.5;
-  }
-*/
+  frontRight.setInverted(true);
+  rearRight.setInverted(true);
   drive.arcadeDrive(move, turn);
-
  }
   @Override
   public void initDefaultCommand() {

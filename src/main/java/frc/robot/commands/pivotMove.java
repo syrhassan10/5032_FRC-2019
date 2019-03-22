@@ -10,10 +10,10 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class HatchCommand extends Command {
-  public HatchCommand() {
+public class pivotMove extends Command {
+  public pivotMove() {
     // Use requires() here to declare subsystem dependencies
-     requires(Robot.HatchMove);
+    requires(Robot.pivotInstance);
   }
 
   // Called just before this Command runs the first time
@@ -24,20 +24,8 @@ public class HatchCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double HatchControl = Robot.m_oi.stick2.getRawAxis(5); // SECOND JOYSTICK: RIGHT STICK
-    Robot.HatchMove.hatchUp(HatchControl);
-    //Move Up *****************************
-    /*
-   
-    if (HatchButtonUp == true){
-      Robot.HatchMove.hatchUp(0.5);
-    }else if (HatchButtonDown){
-      Robot.HatchMove.hatchUp(-0.5);
-    } else{
-      Robot.HatchMove.hatchUp(0);
-    }
 
-*/
+    Robot.pivotInstance.movePivot(Robot.m_oi.stick2.getY());// SECOND JOYSTICK: LEFT STICK
   }
 
   // Make this return true when this Command no longer needs to run execute()

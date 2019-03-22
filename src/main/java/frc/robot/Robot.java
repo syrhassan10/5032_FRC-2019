@@ -13,18 +13,21 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.vision.VisionThread;
+import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.ClawMech;
 import frc.robot.commands.moveFWD;
-
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.HatchRotate;
+import frc.robot.subsystems.PivotRotate;
+
 
 //import frc.robot.subsystems.GripPipeline;
 
@@ -39,13 +42,15 @@ import frc.robot.subsystems.HatchRotate;
 
 
 public class Robot extends TimedRobot {
-  public static DriveTrain moveForward  = new DriveTrain();;
+  public static DriveTrain moveForward  = new DriveTrain();
   public static BallIntake suckBall= new BallIntake();;
   public static Elevator elevator = new Elevator();
   public static HatchRotate HatchMove= new HatchRotate();
   public static Claw claw = new Claw();
-
-
+  public static DigitalOutput lEDOutput= new DigitalOutput(1);
+  public static PivotRotate pivotInstance = new PivotRotate();
+  public static ClawMech ClawMech = new ClawMech();
+  public static moveFWD moveFW = new moveFWD();
 
  // public static LimitSwitch spitter = new LimitSwitch();
   public static OI m_oi;
@@ -65,7 +70,6 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     //table = NetworkTable.getTable("GRIP/myLinesReport");
 
-    
     m_oi = new OI();
     
    // SmartDashboard.putBoolean("isPressed", Robot.driveTrain.isSwitchPressed());
@@ -83,7 +87,7 @@ public class Robot extends TimedRobot {
   });
   visionThread.start();
   */
-    m_chooser.setDefaultOption("Default Auto", new moveFWD());
+    //m_chooser.setDefaultOption("Default Auto", new moveFWD());
     //m_chooser.setDefaultOption("Default Auto", new arcadeDrive());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
@@ -129,7 +133,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_chooser.getSelected();
+    
+   
+    
 
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -150,6 +156,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     
+
     /*
     double centerX;
     synchronized (imgLock) {
@@ -162,7 +169,7 @@ public class Robot extends TimedRobot {
 
     driveTrain.teleopDrive(0.6, -turn * 0.005);
     */
-    //Scheduler.getInstance().run();
+    Scheduler.getInstance().run();
     
   }
 

@@ -26,32 +26,32 @@ public class RobotMap {
   public static int limitSwitchChannel = 4;
 
   //Talon SRX CAN bus IDs-------------------------------------
-  //Left
-  int frontLeftChannel = 1;
-  int rearLeftChannel = 4;
-  //Right
-  int frontRightChannel = 2;
-  int rearRightChannel = 3;
-  
+  public static int frontLeftChannel = 3;
+  public static int rearLeftChannel = 4;
+  public static int frontRightChannel = 1;//
+  public static int rearRightChannel = 2; //CORRECT
   
   //Victor SPX CAN bus IDs-------------------------------
-  //Elevators
-  int elevator1Channel = 1;
-  int elevator2Channel = 2;
-  int elevator3Channel = 3;
-  int elevator4Channel = 4;
+  //Elevator Motor Controllers
+  public static int elevator1Channel = 1;
+  public static int elevator2Channel = 3;
+  public static int elevator3Channel = 5;
+  public static int elevator4Channel = 6;
+
+  //Ball Pivot
+  public static int ballPivotChannel = 4;
+
+  //Ball Intake
+  public static int ballIntakeChannel = 2;
+
+  //Hatch
+  public static int hatchRotateChannel = 7;
+
 
 
   
 
-  //Intake
-  public static int ballIntakeChannel = 6;
-
-  //
   
 
-  // If you are using multiple modules, make sure to define both the port
-  // number and the module. For example you with a rangefinder:
-  // public static int rangefinderPort = 1;
-  // public static int rangefinderModule = 1;
+ 
 }

@@ -6,37 +6,27 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.subsystems;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.commands.ClawMech;
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import frc.robot.RobotMap;
+import frc.robot.commands.pivotMove;
 
-/**
- * Add your docs here.
- */
-public class Claw extends Subsystem {
+
+public class PivotRotate extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-
-  Compressor c;
- 
+  public WPI_VictorSPX pivotMVictorSPX = new WPI_VictorSPX(RobotMap.ballPivotChannel);
   
-  DoubleSolenoid ClawSolenoid = new DoubleSolenoid(0,1);
 
+  public void movePivot (double move){
 
-    //Sets the value for the solenoid, opens valve
-  public void Open(){
-  ClawSolenoid.set(DoubleSolenoid.Value.kForward);
-   }
-  //Closes Vlave
-  public void Close(){
-  ClawSolenoid.set(DoubleSolenoid.Value.kReverse);
+    pivotMVictorSPX.set((0.25*move)-0.6 );
+
   }
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    setDefaultCommand(new ClawMech());
+     setDefaultCommand(new pivotMove());
   }
 }
