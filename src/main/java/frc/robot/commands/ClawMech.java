@@ -32,11 +32,9 @@ public void execute() {
     ClawButtonRelease = Robot.m_oi.stick2.getRawButton(3);
     
     if (ClawButton == true){
-      if(true) {
         //closes the clamp and prints 
         System.out.println("Clamp Closed");
         Robot.claw.Close();
-      }
     }
     if (ClawButtonRelease == true)  {
       //Opens the Clamp when button 6 is pressed and prints
